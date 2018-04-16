@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="diff_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+
+    <!-- Include the parameters xacro flie -->
+    <xacro:include filename="$(find project_description)/urdf/project.parameters.xacro" />
+
+    <!-- Include macros for creating all links and joints -->
+    <xacro:include filename="$(find project_description)/urdf/project.macros.xacro" />
+
+    <!-- Include macros for creating all links and joints -->
+    <xacro:include filename="$(find project_description)/urdf/project.rvizmats.xacro" />
+
+    <!-- Camera in separate file for readability -->
+    <xacro:include filename="$(find project_description)/urdf/project.camera.xacro" />
+
+    <!-- Include gazebo elements -->
+    <xacro:include filename="$(find project_description)/urdf/project.gazebo.xacro" />
+
+
+
+    <!-- Create a base link so that the robot can be away from the origin -->
+    <link name="base_link" />
+
+    <!-- Create the robot chassis -->
+    <link name="robot_chassis">
+
+        <!-- Create the chassis visual -->
+        <visual>
+            <xacro:create_cylinder_geometry radius="${chassis_radius}" length="${chassis_height}" />
+            <material name="white" />
+        </visual>
+
+
+        <!-- The wheel's collision shape -->
+        <collision>
+            <xacro:create_cylinder_geometry radius="${chassis_radius}" length="${chassis_height}" />
+        </collision>
+
+
+        <!-- Create the chassis's inertial matrix -->
+        <xacro:create_cylinder_inertial
+            mass="${chassis_mass}" radius="${chassis_radius}"
+            length="${chassis_height}"/>
+
+    </link>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="robot_chassis" />
+        <origin xyz="-6.205979 -8.42000 ${vertical_offset}" />
+    </joint>
+
+    <!-- Create the robot wheels -->
+    <xacro:create_wheel reflect_lr="1" wheel_id="left" parent_name="robot_chassis" />
+    <xacro:create_wheel reflect_lr="-1" wheel_id="right" parent_name="robot_chassis" />
+
+    <!-- Create the robot gliders -->
+    <xacro:create_glide reflect_fr="1" glide_id="front" parent_name="robot_chassis" />
+    <xacro:create_glide reflect_fr="-1" glide_id="rear" parent_name="robot_chassis" />
+</robot>
