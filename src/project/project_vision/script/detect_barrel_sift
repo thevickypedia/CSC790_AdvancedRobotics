@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     rospy.init_node('bob_the_barrel_detector', anonymous=True)
 
-    rospy.Subscriber('/project/camera1/image_raw', Image, camera_callback)
+    rospy.Subscriber('/diff_drive/camera1/image_raw', Image, camera_callback)
 
     try:
         run_bob()

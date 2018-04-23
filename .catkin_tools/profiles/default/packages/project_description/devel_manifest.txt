@@ -1,0 +1,4 @@
+project/project_description
+/home/jesse/CSC790-Project/devel/.private/project_description/lib/pkgconfig/project_description.pc /home/jesse/CSC790-Project/devel/lib/pkgconfig/project_description.pc
+/home/jesse/CSC790-Project/devel/.private/project_description/share/project_description/cmake/project_descriptionConfig.cmake /home/jesse/CSC790-Project/devel/share/project_description/cmake/project_descriptionConfig.cmake
+/home/jesse/CSC790-Project/devel/.private/project_description/share/project_description/cmake/project_descriptionConfig-version.cmake /home/jesse/CSC790-Project/devel/share/project_description/cmake/project_descriptionConfig-version.cmake

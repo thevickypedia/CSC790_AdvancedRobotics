@@ -21,7 +21,7 @@ def float_callback(data):
 
 
 def run_control_publisher():
-	control_publisher = rospy.Publisher('/project/cmd_vel', Twist, queue_size=1)
+	control_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 	rate = rospy.Rate(10)
 
 	vel_msg= Twist()
