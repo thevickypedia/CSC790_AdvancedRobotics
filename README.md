@@ -1,7 +1,7 @@
 # CSC790-Project
 
 
-Complete reading by 3/5/18 : ssssscs231n.github.io/convolutional-networks/
+Complete reading by 3/5/18 : 231n.github.io/convolutional-networks/
 	
 
 	3/9  CNN Structure Decided/Begin Coding
