@@ -1,6 +1,0 @@
-devel_space: /home/jesse/CSC790-Project/devel
-install: false
-install_space: /home/jesse/CSC790-Project/install
-profile: default
-source_space: /home/jesse/CSC790-Project/src
-workspace: /home/jesse/CSC790-Project

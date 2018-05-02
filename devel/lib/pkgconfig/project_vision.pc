@@ -1,1 +1,0 @@
-/home/jesse/CSC790-Project/devel/.private/project_vision/lib/pkgconfig/project_vision.pc

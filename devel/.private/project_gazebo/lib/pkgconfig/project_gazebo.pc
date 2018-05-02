@@ -1,8 +1,0 @@
-prefix=/home/jesse/CSC790-Project/devel/.private/project_gazebo
-
-Name: project_gazebo
-Description: Description of project_gazebo
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/jesse/CSC790-Project/devel/.private/project_gazebo/lib 
-Requires: 

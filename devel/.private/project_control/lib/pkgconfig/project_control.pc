@@ -1,8 +1,0 @@
-prefix=/home/jesse/CSC790-Project/devel/.private/project_control
-
-Name: project_control
-Description: Description of project_control
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/jesse/CSC790-Project/devel/.private/project_control/lib 
-Requires: 
