@@ -59,9 +59,7 @@ def run_control_publisher():
 
 if __name__ == '__main__':
 
-	rospy.init_node('Go_Orange', anonymous=True)
-	rospy.Subscriber('/project/angle_to_barrel_rads', Float64, float_callback)
-	pygame.init()
+	rospy.init_node('Control_Robot', anonymous=True)
 
 	try:
 		run_control_publisher()
