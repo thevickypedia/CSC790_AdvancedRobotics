@@ -1,0 +1,4 @@
+project/project_control
+/home/jesse/CSC790-Project/devel/.private/project_control/lib/pkgconfig/project_control.pc /home/jesse/CSC790-Project/devel/lib/pkgconfig/project_control.pc
+/home/jesse/CSC790-Project/devel/.private/project_control/share/project_control/cmake/project_controlConfig-version.cmake /home/jesse/CSC790-Project/devel/share/project_control/cmake/project_controlConfig-version.cmake
+/home/jesse/CSC790-Project/devel/.private/project_control/share/project_control/cmake/project_controlConfig.cmake /home/jesse/CSC790-Project/devel/share/project_control/cmake/project_controlConfig.cmake
