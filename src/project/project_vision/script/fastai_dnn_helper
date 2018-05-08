@@ -15,7 +15,7 @@ from fastai.dataset import *
 from fastai.sgdr import *
 from fastai.plots import *
 
-PATH = './all_pictures/'
+PATH = 'all_pictures/'
 arch = resnet34
 size = 30
 
