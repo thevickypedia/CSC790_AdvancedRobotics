@@ -24,7 +24,7 @@ learn = ConvLearner.pretrained(arch, data)
 learn.precompute = False
 
 print('Did we make it to this point?')
-learn.load('project_model2')
+learn.load('project_model')
 
 
 trn_fms, val_tfms = tfms_from_model(arch, size)
