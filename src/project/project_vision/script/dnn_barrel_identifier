@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+from __future__ import division
+
+from subprocess import Popen, PIPE
+from os import environ
+
+import rospy
+from sensor_msgs.msg import Image
+import sys
+
+import cv2
+from cv_bridge import CvBridge
+
+from geometry_msgs.msg import Twist
+
+def camera_callback(ros_image):
+    """Detect the color orange.
+
+    rosmsg show sensor_msgs/Image
+        std_msgs/Header header
+          uint32 seq
+          time stamp
+          string frame_id
+        uint32 height
+        uint32 width
+        string encoding
+        uint8 is_bigendian
+        uint32 step
+        uint8[] data
+
+    For /lab05/camera1/image_raw
+        height       = 480
+        width        = 640
+        encoding     = rgb8
+        is_bigendian = false
+        step         = 1920 (width * 3 = 640 * 3)
+        data         = length is 921600 (step * height = 1920 * 480)
+    """
+
+    cam_image = image_converter.imgmsg_to_cv2(ros_image, 'bgr8')
+    cv2.imwrite('cam_image.png', cam_image)
+
+
+def run(command, env):
+
+	process = Popen(command, stdout=PIPE, shell=True, env=env, executable='/bin/bash')
+	control_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+
+	rate = rospy.Rate(10)
+
+	vel_msg= Twist()
+	vel_msg.linear.x=0.0
+	vel_msg.linear.y=0
+	vel_msg.linear.z=0
+	vel_msg.angular.x=0
+	vel_msg.angular.y=0
+	vel_msg.angular.z=0.0
+
+
+	while not rospy.is_shutdown():
+		x = process.stdout.readline().rstrip('\n')
+		print(x)
+
+		control_publisher.publish(vel_msg)
+
+		rate.sleep()
+
+
+
+if __name__ == '__main__':
+
+	fastai_env = environ.copy()
+	fastai_env['PATH'] = '/home/jesse/anaconda3/bin:' + fastai_env['PATH']
+	fastai_env['PYTHONPATH'] = ''
+
+	rospy.init_node('Driver', anonymous=True)
+	rospy.Subscriber('/diff_drive/camera1/image_raw', Image, camera_callback)
+	image_converter=CvBridge()
+
+	run('source activate fastai-cpu && ./fastai_dnn_helper', fastai_env)
