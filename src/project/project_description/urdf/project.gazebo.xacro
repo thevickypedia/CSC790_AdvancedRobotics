@@ -30,7 +30,7 @@
 
     <!-- Camera Plugin -->
 
-    <xacro:property name="camera_update_hz" value="10" />
+    <xacro:property name="camera_update_hz" value="60" />
 
     <gazebo reference="camera">
         <sensor type="camera" name="camera1">

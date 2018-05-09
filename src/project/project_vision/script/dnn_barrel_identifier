@@ -51,17 +51,53 @@ def run(command, env):
 	rate = rospy.Rate(10)
 
 	vel_msg= Twist()
-	vel_msg.linear.x=0.0
+	vel_msg.linear.x=0.1
 	vel_msg.linear.y=0
 	vel_msg.linear.z=0
 	vel_msg.angular.x=0
 	vel_msg.angular.y=0
-	vel_msg.angular.z=0.0
+	vel_msg.angular.z=0
 
 
 	while not rospy.is_shutdown():
 		x = process.stdout.readline().rstrip('\n')
+		# [[0.01971 0.81561 0.16468]]
 		print(x)
+		if len(x) == 27:
+			lprob = float(x[2:7])
+			mprob = float(x[10:15])
+			rprob = float(x[18:23])
+			print(lprob,mprob,rprob)
+
+			if lprob >= .6:
+				if lprob > mprob and lprob > rprob:
+
+					if vel_msg.angular.z <= -0.1:
+						vel_msg.angular.z = -0.2
+
+					else:
+						vel_msg.angular.z = -0.1
+
+					vel_msg.linear.x = .1
+			elif mprob >= .6:
+				if mprob > lprob and mprob > rprob:
+					vel_msg.linear.x = 0.5
+					vel_msg.angular.z = 0.0
+
+			elif rprob >= .6:
+				if rprob > mprob and rprob > lprob:
+
+					if vel_msg.angular.z >= 0.1:
+						vel_msg.angular.z = 0.2
+
+					else:
+						vel_msg.angular.z = 0.1
+
+					vel_msg.linear.x = .1
+
+
+			#print(lprob, mprob, rprob)
+
 
 		control_publisher.publish(vel_msg)
 

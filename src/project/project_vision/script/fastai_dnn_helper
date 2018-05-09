@@ -4,6 +4,9 @@ from __future__ import print_function
 from __future__ import division
 
 import sys
+import time
+import numpy as np
+
 
 sys.path.append('/home/jesse/fastai')
 
@@ -23,7 +26,6 @@ data = ImageClassifierData.from_paths(PATH, tfms=tfms_from_model(arch,size))
 learn = ConvLearner.pretrained(arch, data)
 learn.precompute = False
 
-print('Did we make it to this point?')
 learn.load('project_model')
 
 
@@ -32,6 +34,7 @@ trn_fms, val_tfms = tfms_from_model(arch, size)
 def run_bob():
 	while True:
 		image_fullfile = 'cam_image.png'
+		#start = time.time()
 		try:
 			im = val_tfms(open_image(image_fullfile))
 		except:
@@ -39,8 +42,12 @@ def run_bob():
 		preds = learn.predict_array(im[None])
 		probs = np.exp(preds)
 		print(probs)
+		#end = time.time()
+		#time_total = end - start
+		#print(time_total)
 
 		sys.stdout.flush()
+		
 
 
 
